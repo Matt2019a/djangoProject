@@ -3,15 +3,24 @@ from django.http import HttpResponse
 from base.models import Activity
 import json
 from django.core import serializers
+from django.template import loader
 from . import froms
 
 
 def home(request):
-    return HttpResponse('Home page')
+    template = loader.get_template('base/index.html')
+    context = {
+        'Home_page': 'Home page',
+    }
+    return HttpResponse(template.render(context, request))
 
 
 def activity(request):
-    return HttpResponse('Activity')
+    template = loader.get_template('base/activity.html')
+    context = {
+        'Activity': 'activity',
+    }
+    return HttpResponse(template.render(context, request))
 
 
 def activities(request):
